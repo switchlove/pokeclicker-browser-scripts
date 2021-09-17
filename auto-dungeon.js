@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PokéClicker Auto-Dungeon
 // @version      0.2
-// @downloadURL  https://raw.githubusercontent.com/switchlove/pokeclicker-browser-scripts/main/auto-dungeon.js
+// @downloadURL  https://github.com/switchlove/pokeclicker-browser-scripts/raw/master/auto-dungeon.js
 // @match        https://www.pokeclicker.com/*
 // @grant none
 // ==/UserScript==
@@ -23,88 +23,88 @@ Element.prototype.appendAfter = function (element) {
 
 window.addEventListener("load", function() {
     setTimeout(function(){
-        main();
+	main();
 
-        setInterval(function(){
-            main();
-        }, 500);
+	setInterval(function(){
+	    main();
+	}, 500);
     }, 5000);
     setInterval(function(){
-        if (clickEngagedD == 1){
-            if (DungeonRunner.map != undefined && Battle.catching() != true){
-                dungeonBot();
-            }
-        }
+	if (clickEngagedD == 1){
+	    if (DungeonRunner.map != undefined && Battle.catching() != true){
+		dungeonBot();
+	    }
+	}
     }, 150);
 });
 
 function main(){
     var CharCard = document.querySelector("#saveSelector > div > div.mb-3.col-lg-4.col-md-6.col-sm-12.xol-xs-12 > div");
     if (CharCard == null && App.game != undefined) {
-        menu();
+	menu();
     }
     var checkDungeonClicker = document.querySelector("#dungeonCheck");
     if (checkDungeonClicker.checked == true){
-        dungeonClick(1);
+	dungeonClick(1);
     }
     if (checkDungeonClicker.checked == false){
-        dungeonClick(0);
+	dungeonClick(0);
     }
 }
 
 function menu(){
     var myContainer = document.querySelector("#automationContainer");
     if (myContainer === null) {
-        var mainDiv = document.createElement('div');
-        mainDiv.id = 'automationContainer';
-        mainDiv.className = 'card border-secondary mb-3';
-        mainDiv.appendBefore( document.querySelector("#pokeballSelector") );
+	var mainDiv = document.createElement('div');
+	mainDiv.id = 'automationContainer';
+	mainDiv.className = 'card border-secondary mb-3';
+	mainDiv.appendBefore( document.querySelector("#pokeballSelector") );
 
-        var mainHeader = document.createElement('div');
-        mainHeader.id = 'automationContainerHeader';
-        mainHeader.className = 'card-header p-0';
-        mainHeader.dataset.toggle = 'collapse';
-        document.querySelector("#automationContainer").append(mainHeader);
+	var mainHeader = document.createElement('div');
+	mainHeader.id = 'automationContainerHeader';
+	mainHeader.className = 'card-header p-0';
+	mainHeader.dataset.toggle = 'collapse';
+	document.querySelector("#automationContainer").append(mainHeader);
 
-        var mainHeaderText = document.createElement('span');
-        mainHeaderText.textContent = 'Auto-Dungeon';
-        document.querySelector("#automationContainerHeader").append(mainHeaderText);
+	var mainHeaderText = document.createElement('span');
+	mainHeaderText.textContent = 'Auto-Dungeon';
+	document.querySelector("#automationContainerHeader").append(mainHeaderText);
 
-        var mainHeaderTbl = document.createElement('table');
-        mainHeaderTbl.id = 'autoPokeTable';
-        mainHeaderTbl.style.width = '100%';
-        mainHeaderTbl.setAttribute('border', '1');
-        var tbdy = document.createElement('tbody');
+	var mainHeaderTbl = document.createElement('table');
+	mainHeaderTbl.id = 'autoPokeTable';
+	mainHeaderTbl.style.width = '100%';
+	mainHeaderTbl.setAttribute('border', '1');
+	var tbdy = document.createElement('tbody');
 
-        var tr1 = document.createElement('tr');
-        tr1.id = 'dungeonBot';
-        var td1r1 = document.createElement('td');
-        td1r1.style.paddingTop = '5px';
-        td1r1.style.paddingBottom = '3px';
-        var td1r1checkbox = document.createElement('input');
-        td1r1checkbox.type = "checkbox";
-        td1r1checkbox.value = "0";
-        td1r1checkbox.id = "dungeonCheck";
-        var td2r1 = document.createElement('td');
+	var tr1 = document.createElement('tr');
+	tr1.id = 'dungeonBot';
+	var td1r1 = document.createElement('td');
+	td1r1.style.paddingTop = '5px';
+	td1r1.style.paddingBottom = '3px';
+	var td1r1checkbox = document.createElement('input');
+	td1r1checkbox.type = "checkbox";
+	td1r1checkbox.value = "0";
+	td1r1checkbox.id = "dungeonCheck";
+	var td2r1 = document.createElement('td');
 
-        td1r1.appendChild(td1r1checkbox);
-        td2r1.appendChild(document.createTextNode('Dungeon Bot'));
+	td1r1.appendChild(td1r1checkbox);
+	td2r1.appendChild(document.createTextNode('Dungeon Bot'));
 
-        tr1.appendChild(td1r1);
-        tr1.appendChild(td2r1);
+	tr1.appendChild(td1r1);
+	tr1.appendChild(td2r1);
 
-        tbdy.appendChild(tr1);
+	tbdy.appendChild(tr1);
 
-        mainHeaderTbl.appendChild(tbdy);
-        mainHeader.appendChild(mainHeaderTbl);
+	mainHeaderTbl.appendChild(tbdy);
+	mainHeader.appendChild(mainHeaderTbl);
     }
 }
 
 function dungeonClick(x) {
     if (x == 1){
-        clickEngagedD = 1;
+	clickEngagedD = 1;
     } else if (x == 0){
-        clickEngagedD = 0;
+	clickEngagedD = 0;
     }
 }
 
@@ -127,18 +127,20 @@ async function dungeonBot() {
 		var pX = await DungeonRunner.map.playerPosition().x;
 		var pY = await DungeonRunner.map.playerPosition().y;
 		//boss rush - comment out next three lines to disable
-        if (pX == bossB && pY == bossA) {
-            await DungeonRunner.handleClick();
-        }
+		if (pX == bossB && pY == bossA) {
+		    await DungeonRunner.handleClick();
+		}
 		var dSize = player.region;
 		var dClears = App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(player.town().dungeon.name)]();
 		if (dClears < 10) {
-			dSize = player.region - 1;
+			dSize = player.region;
 		} else if (dClears < 100) {
-			dSize = player.region - 2;
+			dSize = player.region - 1;
 		} else if (dClears < 1000) {
-			dSize = player.region - 3;
+			dSize = player.region - 2;
 		} else if (dClears < 10000) {
+			dSize = player.region - 3;
+		} else {
 			dSize = player.region - 4;
 		}
 		if (dSize < 0) {
