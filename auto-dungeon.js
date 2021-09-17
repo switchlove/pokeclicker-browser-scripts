@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PokéClicker Auto-Dungeon
 // @version      0.2
-// @downloadURL  https://github.com/switchlove/pokeclicker-browser-scripts/raw/master/auto-dungeon.js
+// @downloadURL  https://raw.githubusercontent.com/switchlove/pokeclicker-browser-scripts/main/auto-dungeon.js
 // @match        https://www.pokeclicker.com/*
 // @grant none
 // ==/UserScript==
