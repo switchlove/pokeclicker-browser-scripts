@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name         PokéClicker Auto-Underground
+// @namespace    https://github.com/switchlove/pokeclicker-browser-scripts/
 // @version      0.3
 // @downloadURL  https://raw.githubusercontent.com/switchlove/pokeclicker-browser-scripts/main/auto-underground.js
 // @match        https://www.pokeclicker.com/*
