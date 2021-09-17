@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         PokéClicker Auto-Underground
-// @version      0.2
+// @version      0.3
 // @downloadURL  https://raw.githubusercontent.com/switchlove/pokeclicker-browser-scripts/main/auto-underground.js
 // @match        https://www.pokeclicker.com/*
 // @grant none
@@ -9,39 +9,39 @@
 var clickEngagedU, clickEngagedM;
 
 Element.prototype.appendBefore = function (element) {
-  element.parentNode.insertBefore(this, element);
+    element.parentNode.insertBefore(this, element);
 },false;
 
 Element.prototype.appendAfter = function (element) {
-	element.parentNode.insertBefore(this, element.nextSibling);
+    element.parentNode.insertBefore(this, element.nextSibling);
 }, false;
 
 window.addEventListener("load", function() {
-	setTimeout(function(){
-		main();
+    setTimeout(function(){
+        main();
 
-		setInterval(function(){
-			main();
-		}, 500);
-	}, 5000);
-	setInterval(function(){
-		if (clickEngagedU == 1){
-			if (document.querySelector("#mineModal").style.display == 'block'){
-				undergroundBot();
-			}
-		}
-		if (clickEngagedM == 1){
-			if (document.querySelector("#mineModal").style.display == 'block'){
-				undergroundMap();
-			}
-		}
-	}, 150);
+        setInterval(function(){
+            main();
+        }, 500);
+    }, 5000);
+    setInterval(function(){
+        if (clickEngagedU == 1){
+            if (document.querySelector("#mineModal").style.display == 'block'){
+                undergroundBot();
+            }
+        }
+        if (clickEngagedM == 1){
+            if (document.querySelector("#mineModal").style.display == 'block'){
+                undergroundMap();
+            }
+        }
+    }, 150);
 });
 
 function main(){
-	var CharCard = document.querySelector("#saveSelector > div > div.mb-3.col-lg-4.col-md-6.col-sm-12.xol-xs-12 > div");
-	if (CharCard == null && App.game != undefined) {
-		menu();
+    var CharCard = document.querySelector("#saveSelector > div > div.mb-3.col-lg-4.col-md-6.col-sm-12.xol-xs-12 > div");
+    if (CharCard == null && App.game != undefined) {
+        menu();
         var checkUndergroundClicker = document.querySelector("#undergroundCheck");
         if (checkUndergroundClicker.checked == true){
             undergroundClick(1);
@@ -60,67 +60,67 @@ function main(){
 }
 
 function menu(){
-	var myContainer = document.querySelector("#automationContainer");
-	if (myContainer === null) {
-		var mainDiv = document.createElement('div');
-		mainDiv.id = 'automationContainer';
-		mainDiv.className = 'card border-secondary mb-3';
+    var myContainer = document.querySelector("#automationContainer");
+    if (myContainer === null) {
+        var mainDiv = document.createElement('div');
+        mainDiv.id = 'automationContainer';
+        mainDiv.className = 'card border-secondary mb-3';
         mainDiv.appendBefore( document.querySelector("#pokeballSelector") );
 
-		var mainHeader = document.createElement('div');
-		mainHeader.id = 'automationContainerHeader';
-		mainHeader.className = 'card-header p-0';
-		mainHeader.dataset.toggle = 'collapse';
-		document.querySelector("#automationContainer").append(mainHeader);
+        var mainHeader = document.createElement('div');
+        mainHeader.id = 'automationContainerHeader';
+        mainHeader.className = 'card-header p-0';
+        mainHeader.dataset.toggle = 'collapse';
+        document.querySelector("#automationContainer").append(mainHeader);
 
-		var mainHeaderText = document.createElement('span');
-		mainHeaderText.textContent = 'AutoPoké';
-		document.querySelector("#automationContainerHeader").append(mainHeaderText);
+        var mainHeaderText = document.createElement('span');
+        mainHeaderText.textContent = 'AutoPoké';
+        document.querySelector("#automationContainerHeader").append(mainHeaderText);
 
-		var mainHeaderTbl = document.createElement('table');
-		mainHeaderTbl.id = 'autoPokeTable';
-		mainHeaderTbl.style.width = '100%';
-		mainHeaderTbl.setAttribute('border', '1');
-		var tbdy = document.createElement('tbody');
+        var mainHeaderTbl = document.createElement('table');
+        mainHeaderTbl.id = 'autoPokeTable';
+        mainHeaderTbl.style.width = '100%';
+        mainHeaderTbl.setAttribute('border', '1');
+        var tbdy = document.createElement('tbody');
 
-		var tr1 = document.createElement('tr');
-		tr1.id = 'undergroundBot';
-		var td1r1 = document.createElement('td');
-		td1r1.style.paddingTop = '5px';
-		td1r1.style.paddingBottom = '3px';
-		var td1r1checkbox = document.createElement('input');
-		td1r1checkbox.type = "checkbox";
-		td1r1checkbox.value = "0";
-		td1r1checkbox.id = "undergroundCheck";
-		var td2r1 = document.createElement('td');
+        var tr1 = document.createElement('tr');
+        tr1.id = 'undergroundBot';
+        var td1r1 = document.createElement('td');
+        td1r1.style.paddingTop = '5px';
+        td1r1.style.paddingBottom = '3px';
+        var td1r1checkbox = document.createElement('input');
+        td1r1checkbox.type = "checkbox";
+        td1r1checkbox.value = "0";
+        td1r1checkbox.id = "undergroundCheck";
+        var td2r1 = document.createElement('td');
 
-		var tr2 = document.createElement('tr');
-		tr2.id = 'undergroundMap';
-		var td1r2 = document.createElement('td');
-		td1r2.style.paddingTop = '5px';
-		td1r2.style.paddingBottom = '3px';
-		var td1r2checkbox = document.createElement('input');
-		td1r2checkbox.type = "checkbox";
-		td1r2checkbox.value = "0";
-		td1r2checkbox.id = "undergroundCheckM";
-		var td2r2 = document.createElement('td');
+        var tr2 = document.createElement('tr');
+        tr2.id = 'undergroundMap';
+        var td1r2 = document.createElement('td');
+        td1r2.style.paddingTop = '5px';
+        td1r2.style.paddingBottom = '3px';
+        var td1r2checkbox = document.createElement('input');
+        td1r2checkbox.type = "checkbox";
+        td1r2checkbox.value = "0";
+        td1r2checkbox.id = "undergroundCheckM";
+        var td2r2 = document.createElement('td');
 
-		td1r1.appendChild(td1r1checkbox);
-		td2r1.appendChild(document.createTextNode('Underground Bot'));
-		td1r2.appendChild(td1r2checkbox);
-		td2r2.appendChild(document.createTextNode('Underground Map'));
+        td1r1.appendChild(td1r1checkbox);
+        td2r1.appendChild(document.createTextNode('Underground Bot'));
+        td1r2.appendChild(td1r2checkbox);
+        td2r2.appendChild(document.createTextNode('Underground Map'));
 
         tr1.appendChild(td1r1);
-		tr1.appendChild(td2r1);
+        tr1.appendChild(td2r1);
         tr2.appendChild(td1r2);
-		tr2.appendChild(td2r2);
+        tr2.appendChild(td2r2);
 
-		tbdy.appendChild(tr1);
-		tbdy.appendChild(tr2);
+        tbdy.appendChild(tr1);
+        tbdy.appendChild(tr2);
 
-		mainHeaderTbl.appendChild(tbdy);
-		mainHeader.appendChild(mainHeaderTbl);
-	} else {
+        mainHeaderTbl.appendChild(tbdy);
+        mainHeader.appendChild(mainHeaderTbl);
+    } else {
         if (document.querySelector("#automationContainerHeader") !== null && document.querySelector("#undergroundBot") === null) {
             var tr1 = document.createElement('tr');
             tr1.id = 'undergroundBot';
@@ -161,29 +161,25 @@ function menu(){
 }
 
 function undergroundClick(x) {
-	if (x == 1){
-		clickEngagedU = 1;
-	} else if (x == 0){
-		clickEngagedU = 0;
-	}
+    if (x == 1){
+        clickEngagedU = 1;
+    } else if (x == 0){
+        clickEngagedU = 0;
+    }
 }
 
 function undergroundClickM(x) {
-	if (x == 1){
-		clickEngagedM = 1;
-	} else if (x == 0){
-		clickEngagedM = 0;
-	}
+    if (x == 1){
+        clickEngagedM = 1;
+    } else if (x == 0){
+        clickEngagedM = 0;
+    }
 }
 
 async function undergroundBot() {
-    var bombLoop = setInterval(function () {
-        if ( Math.floor(App.game.underground.energy) >= 10 ) {
-            Mine.bomb();
-        } else {
-            App.game.underground.energy = 50;
-        }
-    }, 100);
+    if ( Math.floor(App.game.underground.energy) >= 10 ) {
+        Mine.bomb();
+    }
 }
 
 async function undergroundMap() {
@@ -210,12 +206,3 @@ async function undergroundMap() {
         }
     }
 }
-
-/*
-document.querySelector("#dungeonMap > div.card-body.p-0.text-center > table > tbody > tr:nth-child(1) > td:nth-child(1)")
-R1 L1 - document.querySelector("#mineBody > div:nth-child(1) > div:nth-child(1)")
-R1 L2 - document.querySelector("#mineBody > div:nth-child(1) > div:nth-child(2)")
-R2 L1 - document.querySelector("#mineBody > div:nth-child(2) > div:nth-child(1)")
-R2 L2 - document.querySelector("#mineBody > div:nth-child(2) > div:nth-child(2)")
-document.querySelector("#dungeonMap > div.card-body.p-0.text-center > table > tbody > tr:nth-child(" + String(aa + 1) + ") > td:nth-child(" + String(bb + 1) + ")").appendChild(document.createTextNode('Boss'));
-*/
