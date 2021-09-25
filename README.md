@@ -1,6 +1,9 @@
 # pokeclicker-browser-scripts
 Tampermonkey related Pokéclicker scripts
 
+## a6csrq.js
+   The browser version of the script used in the A6CSRQ Challenge client. 
+   
 ## auto-dungeon.js
    An automated dungeon runner. Boss rushes by default (see comment in script for disabling).
 
