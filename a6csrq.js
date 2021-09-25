@@ -3,6 +3,7 @@
 // @version      0.1
 // @description  Automation for Pokeclicker!
 // @author       Switch
+// @downloadURL  https://raw.githubusercontent.com/switchlove/pokeclicker-browser-scripts/main/a6csrq.js
 // @match        https://www.pokeclicker.com/
 // @icon         https://www.google.com/s2/favicons?domain=pokeclicker.com
 // @grant        GM_setValue
